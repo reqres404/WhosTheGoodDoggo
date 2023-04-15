@@ -4,10 +4,12 @@ import Home from "./Pages/Home/Home";
 import TestPage from "./Pages/TestPage/TestPage";
 import AddDog from "./Pages/AddDog/AddDog";
 import ScanDog from "./Pages/ScanDog/ScanDog";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
     return (
         <div>
+            <Navbar/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/adddog" element={<AddDog />} />

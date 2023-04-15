@@ -1,7 +1,12 @@
+import Hero from "../../components/Hero/Hero"
 const Home =()=>{
 
     return(
-        <h1>Home Page</h1>
+        <div>
+            <section>
+            <Hero/> 
+            </section>
+        </div>
     )
 }
 export default Home
