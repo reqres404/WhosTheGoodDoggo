@@ -1,24 +1,19 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import QRCode from "react-qr-code";
+import Home from "./Pages/Home/Home";
+import TestPage from "./Pages/TestPage/TestPage";
+import AddDog from "./Pages/AddDog/AddDog";
+import ScanDog from "./Pages/ScanDog/ScanDog";
 
 function App() {
     return (
-        <div className="App">
-            <div
-                style={{
-                    height: "auto",
-                    margin: "0 auto",
-                    maxWidth: 64,
-                    width: "100%",
-                }}
-            >
-                <QRCode
-                    size={256}
-                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                    value={value}
-                    viewBox={`0 0 256 256`}
-                />
-            </div>
+        <div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/adddog" element={<AddDog />} />
+                <Route path="scandog" element={<ScanDog />} />
+                <Route path="/test" element={<TestPage />} />
+            </Routes>
         </div>
     );
 }

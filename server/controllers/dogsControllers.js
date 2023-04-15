@@ -22,34 +22,35 @@ const deleteDog = async (req, res) => {
         }
         res.status(200).json(dog);
     } catch (error) {
-        if (error.name === 'CastError') {
+        if (error.name === "CastError") {
             return res.status(400).json({ error: "Invalid ID format" });
-        } else if (error.name === 'MongoError') {
+        } else if (error.name === "MongoError") {
             return res.status(500).json({ error: "Database error" });
         } else {
             return res.status(500).json({ error: "Internal server error" });
         }
     }
 };
-const updateDog=async(req,res)=>{
-    const {id} = req.params
-    try{
-        if(!mongoose.Types.ObjectId.isValid(id)){
-            return res.status(400).json({msg:"Id invalid"})
+const updateDog = async (req, res) => {
+    const { id } = req.params;
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ msg: "Id invalid" });
         }
-        const dog = await Dog.findOneAndUpdate({_id:id},{
-            ...req.body
-        })
-        if(!dog){
-            return res.status(400).json({error:"No such dog exists"})
+        const dog = await Dog.findOneAndUpdate(
+            { _id: id },
+            {
+                ...req.body,
+            }
+        );
+        if (!dog) {
+            return res.status(400).json({ error: "No such dog exists" });
         }
-        res.status(200).json(dog)
-    }   
-    catch(error){
-        res.status(504).json({error:error})
-
+        res.status(200).json(dog);
+    } catch (error) {
+        res.status(504).json({ error: error });
     }
-}
+};
 const getDogs = async (req, res) => {
     const dogs = await Dog.find({}).sort({ createdAt: -1 });
     res.status(200).json(dogs);
@@ -58,7 +59,9 @@ const getDogs = async (req, res) => {
 const getDog = async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ error: "No such Dog exists in database" });
+        return res
+            .status(404)
+            .json({ error: "No such Dog exists in database" });
     }
     const dog = await Dog.findById(id);
 
@@ -73,5 +76,5 @@ module.exports = {
     createDog,
     getDog,
     deleteDog,
-    updateDog
+    updateDog,
 };
