@@ -1,48 +1,71 @@
-.hero{
-    margin-top: 5px;
-    display: flex;
-    gap:1em;
-    padding: 1.5rem;
-    flex-wrap: wrap-reverse;
-    align-items: center;
-    min-height: calc(100vh-93.6px);
+.hero-container{
+    display: grid;
     background-color: #272F39;
-    color: white;
-}
-.hero>*{
-    flex: 1 1 25em;
-}
-.hero h1{
-   font-weight: 700;
-   font-size: clamp(40px,5vw,40px);
-   line-height: 1;
-}
-.hero p{
-    font-weight: 500;
-    font-size: 30px;
-    /* padding: 1em 0; */
-}
-.hero a{
-    font-weight: 700;
-    font-size: 20px;
-    padding: 0.6em;
-    background:linear-gradient(90deg,rgb(255, 138, 0) 0%,rgb(222, 150, 69)164.26%);
-    border-radius: 10px;
-    transition: 0.5s;
-    text-decoration: none;
-    color: white;
+    color:white;
+    gap:1rem;
+    grid-template-columns:repeat(auto-fit,minmax(20%,1fr));;
+    height: 70vh;
+    padding: 10px;
 }
 
-.hero a:hover{
-    background-color: #084888;
-    color:white;
-    font-size: 22px;
-    border-radius: 15px;
+.left-sec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 1rem;
 }
-.hero img{
-    margin-top: 60px;
-    width: 60%;
-    height: 55vh;
-    margin-left: 25%;
+.left-sec button{
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+    background-color: #FF8A00;
+    color:white;
+    font-family:'Courier New', Courier, monospace;
+    padding: 15px;
     border-radius: 10px;
+    border: 2px solid #FF8A00;
+    font-size: 1.3rem;
+    transition: 0.1s ;
+}
+.left-sec button:hover{
+    background-color: #272F39;
+    border: 2px solid #FF8A00;
+}
+.left-sec h1{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 52px;
+    padding: 10px;
+}
+.left-sec h2{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 22px;
+    padding: 10px;
+}
+.left-sec span{
+    color: #FF8A00;
+}
+.right-sec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.right-sec img{
+    height:50%;
+    width: 50%;
+    border-radius: 10px;
+    animation-name: bubble-dog;
+    animation-duration:5s;
+    animation-iteration-count: infinite;
+}
+@keyframes bubble-dog{
+    0%{margin-top: 0%;}
+    25%{margin-top: 5%;}
+    50%{margin-top: 0;}
+    75%{margin-top: 5%;}
+    100%{margin-top: 0%;}
+
 }

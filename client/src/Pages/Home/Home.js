@@ -1,11 +1,11 @@
 import Hero from "../../components/Hero/Hero"
+import About from "../../components/About/About"
 const Home =()=>{
 
     return(
-        <div>
-            <section>
+        <div className="home-container">
             <Hero/> 
-            </section>
+            <About/>
         </div>
     )
 }

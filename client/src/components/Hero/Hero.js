@@ -3,19 +3,17 @@ import dog1 from "../../assets/dog1.jpg"
 
 const Hero = () => {
     return (
-        <div className="hero">
-            <section className="hero row container">
-                <div>
-                    <h1>Are you wondering...</h1>
-                    <h1>Who's the good doggo</h1>
-                    <p>Well wonder no more just scan the tag and get to know doggo around you?</p>
-                    <a href="#project">Our Project</a>
-                </div>
-                <div className="row">
-                    <img src={dog1} alt="heroImage"/>
-                </div>
-            </section>
-            
+        <div className="hero-container">
+            <div className="left-sec">
+                <h1>Wondering Who's the <span>Good Doggo?</span></h1>
+                <h2>Well wonder no more...
+                Just <span>Scan</span> and <span>Know!</span>
+                </h2>
+                <button>Know More</button>
+            </div>
+            <div className="right-sec">
+                <img src={dog1}/>
+            </div>
         </div>
     );
 };

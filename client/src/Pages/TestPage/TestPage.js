@@ -1,7 +1,15 @@
-const TestPage =()=>{
+import "./TestPage.css"
 
+const TestPage =()=>{
     return(
-        <h1>Test Page</h1>
+        <div className="hero-container">
+            <div className="left-sec">
+                <h1>Left</h1>
+            </div>
+            <div className="right-sec">
+                <h1>Right</h1>
+            </div>
+        </div>
     )
 }
 export default TestPage

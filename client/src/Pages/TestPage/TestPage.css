@@ -1,0 +1,34 @@
+/* .card-container{
+    margin-top:10%;
+    display: grid;
+    gap:1rem;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+}
+.card{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    
+}
+.hero-container{
+    display: grid;
+    background-color: black;
+    color:white;
+    gap:1rem;
+    grid-template-columns:repeat(auto-fit,minmax(20%,1fr));;
+    height: 100vh;
+}
+.left-sec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.right-sec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: red;
+} */

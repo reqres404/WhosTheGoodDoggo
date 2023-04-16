@@ -9,7 +9,9 @@ import Navbar from "./components/Navbar/Navbar";
 function App() {
     return (
         <div>
+            <section>
             <Navbar/>
+            </section>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/adddog" element={<AddDog />} />
