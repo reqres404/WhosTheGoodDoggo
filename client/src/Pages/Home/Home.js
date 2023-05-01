@@ -1,11 +1,11 @@
 import Hero from "../../components/Hero/Hero"
-import About from "../../components/About/About"
+
 const Home =()=>{
 
     return(
         <div className="home-container">
-            <Hero/> 
-            <About/>
+            <h1>Home Page</h1>
+            <Hero/>
         </div>
     )
 }

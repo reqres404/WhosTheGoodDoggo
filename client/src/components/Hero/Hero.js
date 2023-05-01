@@ -1,20 +1,28 @@
+import { useEffect, useState } from "react";
 import "./Hero.css"
-import dog1 from "../../assets/dog1.jpg"
 
 const Hero = () => {
+    const [dogs, setDogs] = useState([]);
+
+    useEffect(() => {
+      fetch('/api/dogs')
+        .then(response => response.json())
+        .then(data => setDogs(data));
+    }, []);
+
+    const getDog = () => {
+        console.log(dogs.map(dog => dog.name))
+    }
+
     return (
-        <div className="hero-container">
-            <div className="left-sec">
-                <h1>Wondering Who's the <span>Good Doggo?</span></h1>
-                <h2>Well wonder no more...
-                Just <span>Scan</span> and <span>Know!</span>
-                </h2>
-                <button>Know More</button>
-            </div>
-            <div className="right-sec">
-                <img src={dog1}/>
-            </div>
+        <div>
+            <h1>Data:</h1>
+            {dogs.map(dog => (
+                <h1 key={dog._id}>{dog.name}</h1>
+            ))}
+            <button onClick={getDog}>get Dogs</button>
         </div>
     );
 };
+
 export default Hero;

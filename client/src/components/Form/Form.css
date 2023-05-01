@@ -1,13 +1,43 @@
 .add-dog{
     margin: auto;
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    
     justify-content:center;
     text-align: center;
+    background-color: rgba(6, 6, 6, 0.814);
+    color: white;
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
 }
 .add-dog-form{
     display: flex;
     flex-direction: column;
     justify-content:center;
+    
+}
+.add-dog label{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding: 5px;
+}
+.add-dog input{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding: 5px;
+}
+.add-dog button{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+
+
     
 }

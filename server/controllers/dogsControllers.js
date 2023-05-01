@@ -1,10 +1,19 @@
+const cloudinary = require("../Utils/cloudinary");
 const Dog = require("../models/dogs");
 const mongoose = require("mongoose");
 
 const createDog = async (req, res) => {
-    const { name, age, weight, address } = req.body;
+    const { name, age, weight, address,image} = req.body;
     try {
-        const dog = await Dog.create({ name, age, weight, address });
+        const result =await cloudinary.uploader.upload(req.file.path)
+        const dog = await Dog.create({
+            name,
+            age,
+            weight,
+            address,
+            image:result.secure_url
+        });
+
         res.status(200).json(dog);
     } catch (error) {
         res.status(504).json({ error: error.message });
@@ -71,10 +80,28 @@ const getDog = async (req, res) => {
     res.status(200).json(dog);
 };
 
+//testing upload image
+const uploadImage = async (req, res) => {
+    try {
+        let result = await cloudinary.uploader.upload(req.file.path);
+        let newDog = new Dog({
+            name:req.body.name,
+            age:req.body.age,
+            weight:req.body.weight,
+            address:req.body.address,
+            image:result.secure_url
+        })
+        res.status(200).json(newDog);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getDogs,
     createDog,
     getDog,
     deleteDog,
     updateDog,
+    uploadImage,
 };
