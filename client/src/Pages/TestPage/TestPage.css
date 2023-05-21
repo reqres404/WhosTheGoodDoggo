@@ -32,3 +32,10 @@
     padding: 10px;
     background-color: red;
 } */
+.testSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}

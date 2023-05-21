@@ -3,59 +3,77 @@ const Dog = require("../models/dogs");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
+const { MongoClient } = require("mongodb");
+const { GridFSBucket } = require("mongodb");
+require("dotenv").config();
 
-// ***  USING MULTER FOR DIRECT DATABASE STORAGE    *** //
-const storageEngine = multer.diskStorage({
-    destination: "./images",
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}--${file.originalname}`);
-    },
+//Setup for upstreaming files to mongo
+const uri = process.env.DB_URL;
+const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 
-const upload = multer({
-    storage: storageEngine,
-    // limits:{fileSize:1000000},
-    fileFilter:(req,file,cb) => {
-        checkFileType(file,cb)
+client.connect((err) => {
+    if (err) {
+        console.log(err);
+        return;
     }
 });
+
+//  ***  USING MULTER FOR DIRECT DATABASE STORAGE    ***    //
 
 const uploadImageTwo = async (req, res) => {
-    if (req.file){
-        console.log("file uploaded sucessfully")
-        console.log("File uploaded successfully:");
-        console.log("Filename: " + req.file.filename);
-        console.log("Size: " + req.file.size);
-        console.log("Mimetype: " + req.file.mimetype);
-        console.log("Path: " + req.file.path);
-        
-        res.status(200).send("single file uploaded successfully")
-        
-    }
-    else{
-        res.status(400).send("please upload a valid image")
-    }
-};
-
-//  Validating file type
-
-const checkFileType = function (file, cb) {
-    //Allowed file extensions
-    const fileTypes = /jpeg|jpg|png|gif|svg/; //check extension names
-
-    const extName = fileTypes.test(
-        path.extname(file.originalname).toLowerCase()
-    );
-
-    const mimeType = fileTypes.test(file.mimetype);
-
-    if (mimeType && extName) {
-        return cb(null, true);
+    if (req.file) {
+        const db = client.db("test");
+        const bucket = new GridFSBucket(db);
+        console.log(`File: ${req.file.filename} uploaded to device`);
+        console.log(`File Path: ${req.file.path} uploaded to device`);
+        var imageBuffer = await req.file.buffer;
+        if (!imageBuffer) {
+            console.log("Buffer is Undefined")
+        }
+        else{
+            console.log(imageBuffer);
+        }
+        res.status(200).send("single file uploaded successfully");
     } else {
-        cb("Error: You can Only Upload Images!!");
+        res.status(400).send("please upload a valid image");
     }
 };
+
 // ***  USING MULTER FOR DIRECT DATABASE STORAGE    *** //
+// Create a Multer storage instance
+const storage = multer.memoryStorage();
+
+// Configure the Multer upload middleware
+const upload = multer({ storage: storage }).single('image'); // 'image' is the field name for the uploaded file
+
+// Define your route handler
+const uploadImageAsAstring = async (req, res) => {
+  try {
+    // Use the upload middleware to handle the file upload
+    upload(req, res, async (err) => {
+      if (err) {
+        // Handle any upload errors
+        return res.status(500).json({ error: err.message });
+      }
+
+      if (!req.file) {
+        // Handle case when no file is uploaded
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+
+      // Access the original filename
+      const filename = req.file.originalname;
+      const fileData = req.file.buffer.toString('base64')
+      console.log(fileData)
+      res.send(`${filename} uploaded successfully`);
+    });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
 
 const createDog = async (req, res) => {
     const { name, age, weight, address, image } = req.body;
@@ -152,7 +170,7 @@ const uploadImage = async (req, res) => {
     }
 };
 
-//upload Images directly to database
+
 
 module.exports = {
     getDogs,
@@ -161,15 +179,12 @@ module.exports = {
     deleteDog,
     updateDog,
     uploadImage,
-    uploadImageTwo
+    uploadImageTwo,
+    uploadImageAsAstring
 };
 
-const { MongoClient } = require('mongodb');
-const { GridFSBucket } = require('mongodb');
-
-
-
-//  *****   MONGODB DIRECT IMAGE UPLOAD CHATGPT     *****   //         
+//upload Images directly to database
+//  *****   MONGODB DIRECT IMAGE UPLOAD CHATGPT     *****   //
 // // Connect to MongoDB
 // const uri = 'mongodb://localhost:27017/mydatabase';
 // const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -197,10 +212,9 @@ const { GridFSBucket } = require('mongodb');
 
 // Note that this is a basic example and you may need to customize it to suit your specific use case. For example, you may want to add error handling and validation code, or use a different naming convention for the uploaded files.
 
-//  *****   MONGODB DIRECT IMAGE UPLOAD CHATGPT     *****   //         
+//  *****   MONGODB DIRECT IMAGE UPLOAD CHATGPT     *****   //
 
-
-//  *****   MYSQL DIRECT IMAGE UPLOAD CHATGPT     *****   //         
+//  *****   MYSQL DIRECT IMAGE UPLOAD CHATGPT     *****   //
 
 // To upload an image to MySQL, you can store the image as a binary large object (BLOB) in a table. Here's an example of how to insert an image file into a MySQL database table using the mysql package in Node.js:
 
@@ -240,4 +254,4 @@ const { GridFSBucket } = require('mongodb');
 
 // Finally, we close the MySQL connection. Note that this is a basic example and you may need to customize it to suit your specific use case. For example, you may want to add error handling, validation code, or use a different table structure.
 
-//  *****   MYSQL DIRECT IMAGE UPLOAD CHATGPT     *****   //         
+//  *****   MYSQL DIRECT IMAGE UPLOAD CHATGPT     *****   //
