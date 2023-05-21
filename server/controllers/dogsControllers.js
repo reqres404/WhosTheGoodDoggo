@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const { MongoClient } = require("mongodb");
 const { GridFSBucket } = require("mongodb");
+const fs = require("fs");
 require("dotenv").config();
 
 //Setup for upstreaming files to mongo
@@ -31,9 +32,8 @@ const uploadImageTwo = async (req, res) => {
         console.log(`File Path: ${req.file.path} uploaded to device`);
         var imageBuffer = await req.file.buffer;
         if (!imageBuffer) {
-            console.log("Buffer is Undefined")
-        }
-        else{
+            console.log("Buffer is Undefined");
+        } else {
             console.log(imageBuffer);
         }
         res.status(200).send("single file uploaded successfully");
@@ -47,37 +47,38 @@ const uploadImageTwo = async (req, res) => {
 const storage = multer.memoryStorage();
 
 // Configure the Multer upload middleware
-const upload = multer({ storage: storage }).single('image'); // 'image' is the field name for the uploaded file
+const upload = multer({ storage: storage }).single("image"); // 'image' is the field name for the uploaded file
 
 // Define your route handler
 const uploadImageAsAstring = async (req, res) => {
-  try {
-    // Use the upload middleware to handle the file upload
-    upload(req, res, async (err) => {
-      if (err) {
-        // Handle any upload errors
-        return res.status(500).json({ error: err.message });
-      }
+    try {
+        // Use the upload middleware to handle the file upload
+        upload(req, res, async (err) => {
+            if (err) {
+                // Handle any upload errors
+                return res.status(500).json({ error: err.message });
+            }
 
-      if (!req.file) {
-        // Handle case when no file is uploaded
-        return res.status(400).json({ error: 'No file uploaded' });
-      }
+            if (!req.file) {
+                // Handle case when no file is uploaded
+                return res.status(400).json({ error: "No file uploaded" });
+            }
 
-      // Access the original filename
-      const filename = req.file.originalname;
-      const fileData = req.file.buffer.toString('base64')
-      console.log(fileData)
-      res.send(`${filename} uploaded successfully`);
-    });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+            // Access the original filename
+            const filename = req.file.originalname;
+            const fileData = req.file.buffer.toString("base64");
+            console.log(fileData);
+            res.send(`${filename} uploaded successfully`);
+        });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
 };
 
 const createDog = async (req, res) => {
     const { name, age, weight, address, image } = req.body;
     try {
+        console.log("Hi from the createDog request")
         const result = await cloudinary.uploader.upload(req.file.path);
         const dog = await Dog.create({
             name,
@@ -86,19 +87,44 @@ const createDog = async (req, res) => {
             address,
             image: result.secure_url,
         });
-
+        let imagePath = req.file.path;
+        if (imagePath != null) {
+            fs.unlink(imagePath, function (err) {
+                if (err) {
+                    throw err;
+                } else {
+                    console.log("File Deleted Successfully");
+                }
+            });
+        }
         res.status(200).json(dog);
     } catch (error) {
         res.status(504).json({ error: error.message });
     }
 };
+
 const deleteDog = async (req, res) => {
     const { id } = req.params;
+    console.log("Hi in the terminal")
     try {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ msg: "Id invalid" });
         }
         const dog = await Dog.findOneAndDelete({ _id: id });
+        // cloudinary.uploader.destroy(imageInCloud.image, (error, result) => {
+        //     if (error) {
+        //         console.error(error);
+        //         // Handle the error
+        //     } else {
+        //         console.log(result);
+        //         // Image deleted successfully
+        //     }
+        // });
+        const dogImageInCloud = await Dog.findById(id);
+
+                
+        console.log(dogImageInCloud.image)
+        
         if (!dog) {
             return res.status(400).json({ error: "No such dog exists" });
         }
@@ -170,8 +196,6 @@ const uploadImage = async (req, res) => {
     }
 };
 
-
-
 module.exports = {
     getDogs,
     createDog,
@@ -180,7 +204,7 @@ module.exports = {
     updateDog,
     uploadImage,
     uploadImageTwo,
-    uploadImageAsAstring
+    uploadImageAsAstring,
 };
 
 //upload Images directly to database
