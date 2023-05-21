@@ -4,11 +4,6 @@ import "./TestPage.css"
 const TestPage = () => {
     const [dogs, setDogs] = useState([]);
 
-    useEffect(() => {
-      fetch('/api/dogs')
-        .then(response => response.json())
-        .then(data => setDogs(data));
-    }, []);
 
     const getDog = () => {
         console.log(dogs.map(dog => dog.name))
@@ -19,7 +14,24 @@ const TestPage = () => {
         borderRadius:'15%',
         boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
     }
-
+    const handleDelete = (id) => {
+        console.log(id);
+        fetch(`api/dogs/${id}`, {
+          method: "DELETE",
+        })
+          .then(() => {
+            // Remove the deleted dog from the current dogs state
+            setDogs((prevDogs) => prevDogs.filter((dog) => dog._id !== id));
+          })
+          .catch((error) => {
+            console.error("Error deleting dog:", error);
+          });
+      };
+    useEffect(() => {
+        fetch('/api/dogs')
+          .then(response => response.json())
+          .then(data => setDogs(data));
+      }, []);
     return (
         <div className="testSection" >
             <h1>Data:</h1>
@@ -30,7 +42,9 @@ const TestPage = () => {
                 <p> Address : {dog.address}</p>
                 
                 <img src={dog.image} alt="dog" style={imageStyle}></img>
+                <button onClick={()=>handleDelete(dog._id)}> delete </button>
                 </div>
+
             ))}
             <button onClick={getDog}>get Dogs</button>
         </div>
