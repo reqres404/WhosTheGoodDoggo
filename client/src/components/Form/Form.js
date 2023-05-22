@@ -1,3 +1,4 @@
+import GenerateQR from "../QRCode/GenerateQR";
 import "./Form.css";
 import { useState } from "react";
 
@@ -7,7 +8,8 @@ const Form = () => {
     const [weight, setWeight] = useState("");
     const [address, setAddress] = useState("");
     const [image, setImage] = useState();
-
+    const [submitted, setSubmitted] = useState(false)
+    const [value,setValue] = useState("")
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -32,12 +34,13 @@ const Form = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Success: ", data);
+                    setValue(`http://localhost:3000/${data._id}`)
                     setName("");
                     setAge("");
                     setWeight("");
                     setAddress("");
                     setImage(null);
-
+                    setSubmitted(true)
                     const fileInput = document.getElementById('file-input');
                     fileInput.value = null;
                 })
@@ -48,6 +51,7 @@ const Form = () => {
     };
     return (
         <div className="add-dog">
+            {!submitted&&
             <form className="add-dog-form" onSubmit={handleSubmit}>
                 <h1>Add a Dog</h1>
                 <label>Name</label>
@@ -96,7 +100,13 @@ const Form = () => {
                     }}
                 />
                 <button type="submit">Submit</button>
-            </form>
+            </form>}
+            {
+            value!=="" &&
+            <GenerateQR value={value}/>
+            }
+            
+            
         </div>
     );
 };
