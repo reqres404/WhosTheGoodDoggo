@@ -21,7 +21,11 @@ const dogSchema = new Schema({
     },
     image:{
         type:String,
-        require:false
+        require:true
+    },
+    public_id:{
+        type:String,
+        require:true
     }
 
 },{timestamps:true})

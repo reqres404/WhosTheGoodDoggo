@@ -48,33 +48,6 @@ const storage = multer.memoryStorage();
 
 // Configure the Multer upload middleware
 const upload = multer({ storage: storage }).single("image"); // 'image' is the field name for the uploaded file
-
-// Define your route handler
-const uploadImageAsAstring = async (req, res) => {
-    try {
-        // Use the upload middleware to handle the file upload
-        upload(req, res, async (err) => {
-            if (err) {
-                // Handle any upload errors
-                return res.status(500).json({ error: err.message });
-            }
-
-            if (!req.file) {
-                // Handle case when no file is uploaded
-                return res.status(400).json({ error: "No file uploaded" });
-            }
-
-            // Access the original filename
-            const filename = req.file.originalname;
-            const fileData = req.file.buffer.toString("base64");
-            console.log(fileData);
-            res.send(`${filename} uploaded successfully`);
-        });
-    } catch (e) {
-        res.status(500).json({ error: e.message });
-    }
-};
-
 const createDog = async (req, res) => {
     const { name, age, weight, address, image } = req.body;
     try {
@@ -86,6 +59,7 @@ const createDog = async (req, res) => {
             weight,
             address,
             image: result.secure_url,
+            public_id: result.public_id
         });
         let imagePath = req.file.path;
         if (imagePath != null) {
@@ -111,15 +85,17 @@ const deleteDog = async (req, res) => {
             return res.status(400).json({ msg: "Id invalid" });
         }
         const dog = await Dog.findOneAndDelete({ _id: id });
-        // cloudinary.uploader.destroy(imageInCloud.image, (error, result) => {
-        //     if (error) {
-        //         console.error(error);
-        //         // Handle the error
-        //     } else {
-        //         console.log(result);
-        //         // Image deleted successfully
-        //     }
-        // });
+       
+
+        cloudinary.uploader.destroy(dog.public_id, (error, result) => {
+            if (error) {
+                console.error(error);
+                // Handle the error
+            } else {
+                console.log(result);
+                // Image deleted successfully
+            }
+        });
         const dogImageInCloud = await Dog.findById(id);
 
                 
@@ -195,6 +171,33 @@ const uploadImage = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+// Define your route handler
+const uploadImageAsAstring = async (req, res) => {
+    try {
+        // Use the upload middleware to handle the file upload
+        upload(req, res, async (err) => {
+            if (err) {
+                // Handle any upload errors
+                return res.status(500).json({ error: err.message });
+            }
+
+            if (!req.file) {
+                // Handle case when no file is uploaded
+                return res.status(400).json({ error: "No file uploaded" });
+            }
+
+            // Access the original filename
+            const filename = req.file.originalname;
+            const fileData = req.file.buffer.toString("base64");
+            console.log(fileData);
+            res.send(`${filename} uploaded successfully`);
+        });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+};
+
 
 module.exports = {
     getDogs,
