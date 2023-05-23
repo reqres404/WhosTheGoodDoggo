@@ -39,3 +39,12 @@
     flex-direction: column;
     text-align: center;
 }
+.testSection button{
+    background-color: rgba(6, 6, 6, 0.814);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 30px;
+    margin: 0 10px;
+    font-size: 18px;
+}

@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "options": {
-    "allowedHosts": ["localhost", ".localhost"],
+    "allowedHosts": [
+      "localhost",
+      ".localhost"
+    ],
     "proxy": "https://localhost:3386/"
   },
   "dependencies": {
@@ -15,7 +18,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.10.0",
+    "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
