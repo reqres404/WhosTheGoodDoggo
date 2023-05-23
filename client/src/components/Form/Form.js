@@ -63,7 +63,7 @@ const Form = () => {
                         setName(e.target.value);
                     }}
                 />
-                <label>Age</label>
+                <label>Age (in years)</label>
                 <input
                     type="Number"
                     placeholder="Enter Age of Dog"
@@ -72,7 +72,7 @@ const Form = () => {
                         setAge(e.target.value);
                     }}
                 />
-                <label>Weight</label>
+                <label>Weight (in kg)</label>
                 <input
                     type="Number"
                     placeholder="Enter Weight of Dog"

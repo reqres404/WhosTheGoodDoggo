@@ -1,0 +1,27 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .button-container button {
+    background-color: rgba(6, 6, 6, 0.814);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 30px;
+    margin: 0 10px;
+    font-size: 18px;
+  }
+  
+  .home-container h1 {
+    margin-left: 20px;
+  }
+  
