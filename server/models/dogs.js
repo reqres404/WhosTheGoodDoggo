@@ -15,6 +15,26 @@ const dogSchema = new Schema({
         type:Number,
         require:true
     },
+    gender:{
+        type:String,
+        require:true
+    },
+    neutered:{
+        type:String,
+        require:true
+    },
+    breed:{
+        type:String,
+        require:true
+    },
+    vaccinated:{
+        type:String,
+        require:true
+    },
+    tickelSpot:{
+        type:String,
+        require:true
+    },
     address:{
         type:String,
         require:true

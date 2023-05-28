@@ -5,6 +5,7 @@ import TestPage from "./Pages/TestPage/TestPage";
 import AddDog from "./Pages/AddDog/AddDog";
 import ScanDog from "./Pages/ScanDog/ScanDog";
 import Navbar from "./components/Navbar/Navbar";
+import Card from "./components/Card/Card";
 
 function App() {
     return (
@@ -17,6 +18,8 @@ function App() {
                 <Route path="/adddog" element={<AddDog />} />
                 <Route path="scandog" element={<ScanDog />} />
                 <Route path="/test" element={<TestPage />} />
+                <Route path="/card/:id" element={<Card/>} />
+
             </Routes>
         </div>
     );

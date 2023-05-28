@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const {getDogs,createDog, getDog, deleteDog, updateDog, uploadImage, uploadImageTwo, uploadImageAsAstring} = require("../controllers/dogsControllers")
+const {getDogs,createDog, getDog, deleteDog, updateDog, uploadImageTwo } = require("../controllers/dogsControllers")
 const cloudinary = require("../Utils/cloudinary")
 const multer = require("multer")
 const path = require("path");
@@ -44,8 +44,5 @@ router.get("/:id",getDog)
 router.post("/",upload.single('image'),createDog)
 router.put("/:id",updateDog)
 router.delete("/:id",deleteDog)
-router.post("/image/upload", uploadImageAsAstring)
-router.post("/image/uploadVTwo",upload.single('image'),uploadImageTwo)
-
 
 module.exports=router;

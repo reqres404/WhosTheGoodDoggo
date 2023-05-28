@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #fcfcfc;
 }
 
 .container {
-  background-color: rgb(32, 28, 28);
-  max-width: 1100px;
+  background-color: #272F39;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 9px 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,14 +18,17 @@ body {
 }
 
 .navbar {
-  height: 60px;
-  background-color: rgb(32, 28, 28);
+  height: 12vh;
+  background-color: #272F39;
   position: relative;
 }
 
-.logo {
-  color: white;
+.logo img{
+  width: auto; 
+  height: 65px;
+  padding-top: 25%; 
 }
+
 
 .menu-icon {
   display: none;
@@ -38,19 +40,20 @@ body {
 
 .nav-elements ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;/* Center the list horizontally */
   list-style-type: none;
-}
-
-.nav-elements ul li:not(:last-child) {
-  margin-right: 60px;
+  padding-right: 35px;
 }
 
 .nav-elements ul a {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 400;
   color: #ffffff;
   text-decoration: none;
+}
+
+.nav-elements ul li:not(:last-child) {
+  margin-right: 40px; /* Adjust spacing between list items */
 }
 
 .nav-elements ul a.active {
@@ -63,15 +66,19 @@ body {
   content: '';
   position: absolute;
   bottom: -4px;
-  left: 0;
-  width: 100%;
+  left: 0%; /*Align the underline to the center of the link */
+  width: 50%; /* Set the width to 50% of the link width */
   height: 2px;
-  background-color:peru;
+  background-color: peru;
+  /* transform: translateX(-50%); Center the underline relative to the link */
 }
 
 @media (max-width: 768px) {
   .nav-elements ul li:not(:last-child) {
     margin-right: 30px;
+  }
+  .container{
+    padding: 9px 51px;
   }
 }
 
@@ -86,11 +93,17 @@ body {
     z-index: 999;
     right: 0;
     top: 60px;
-    background-color: #000000;
+    background-color: #272F39;
     width: 0px;
     height: calc(100vh - 60px);
     transition: all 0.3s ease-in;
     overflow: hidden;
+  }
+
+  .navbar-list {
+    display: flex;
+    justify-content: center; /* Center the list horizontally */
+    align-items: center; /* Center the list vertically */
   }
 
   .nav-elements.active {

@@ -1,7 +1,9 @@
-const ScanDog =()=>{
-
+import QRScanner from "../../components/QRScanner/QRScanner"
+const ScanDog=()=>{
     return(
-        <h1>Scan Dog Page</h1>
+        <div>
+            <QRScanner/>
+        </div>
     )
 }
 export default ScanDog
