@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gallery h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 34px;
+  text-align: left;
+  margin: 30px;
+  margin-bottom: 10px;
+  padding-bottom: 40px;
+  color: #2c2c2c;
+} 
+.gallery p {
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 1px;
+  text-align: left;
+  margin-top: 2px;
+  margin-bottom: 52px;
+  padding-bottom: 40px;
+  color: #2c2c2c;
+  position: relative; /* Add position relative */
+}
+.gallery p:after{
+  content: "";
+  position: absolute;
+  width: 210px; 
+  height: 4px; 
+  background-color: #ff8a00; 
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.row img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 0 5px;
+}
+
+@media (max-width: 480px) {
+  .gallery p{
+    text-align: center;
+  }
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .row img {
+    margin: 5px 0;
+  }
+}

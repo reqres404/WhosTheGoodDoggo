@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import {CgMenuRight as Hamburger} from 'react-icons/cg'
+import logoSvg from '../../assets/Logo.svg';
 import './Navbar.css'
 
 const Navbar = () => {
@@ -13,8 +14,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
-        <div className="logo">
-          <h1>Who's The Good Dogo</h1>
+      <div className="logo">
+        <Link to ="/" className='"logo-link'>
+          <img src={logoSvg} alt="Logo" />
+          </Link>
         </div>
         <div className="menu-icon"  onClick={handleShowNavbar}>
           <Hamburger />
