@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { QrReader } from "react-qr-reader";
+import "./QRScanner.css"
 
 const QRScanner = () => {
     const [scanCompleted, setScanCompleted] = useState(false);
@@ -7,10 +8,7 @@ const QRScanner = () => {
     const handleScan = (data) => {
         if (data && !scanCompleted) {
             window.location.replace(data.text);
-            
             setScanCompleted(true);
-            
-            
         }
     };
 
@@ -24,13 +22,14 @@ const QRScanner = () => {
     //   }
 
     return (
-        <div>
+        <div className="scannerDiv">
             {scanCompleted &&
             <h1>Redirecting to the card...</h1>
             }
             {
                 !scanCompleted &&
                 <QrReader
+                className="scannerCam"
                 scanDelay={300}
                 onError={handleError}
                 onResult={handleScan}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./Card.css"
 // Get all dogs
 // filter through ID
 // show that dog
@@ -20,22 +21,29 @@ const Card = () => {
     }, [id]);
 
     return (
-        <div>
+
+        <div className="card">
             {cardData.map((dog) => (
                 <div key={dog._id}>
-                    <h2>{dog.name}</h2>
-                    <h2>{dog.age}</h2>
-                    <h2>{dog.address}</h2>
                     <img
                         style={imageStyle}
                         src={dog.image}
                         alt="Dog_Image"
                     ></img>
-                    <h2>{dog.name}</h2>
+                    <h2>Name : {dog.name}</h2>
+                    <h2>Age : {dog.age}</h2>
+                    <h2>Vaccinated : {dog.vaccinated}</h2>
+                    <h2>Gender : {dog.gender}</h2>
+                    <h2>Breed : {dog.breed}</h2>
+                    <h2>Neutered : {dog.neutered}</h2>
+                    <h2>Tickel Spot : {dog.tickelSpot}</h2>
+                    <h2>Address : {dog.address}</h2>
+                    
+                    
                 </div>
             ))}
 
-            <h1>This is card component</h1>
+            
         </div>
     );
 };
