@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.card {
+  margin: 50px auto;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: #000000;
+  color: #f5f5f5;
+  width: 40%;
+  border-radius: 10px;
+  padding: 30px;
+  overflow: visible;
+  position: relative; /* Add position relative to the main div */
+}
+
+.dog-image {
+  position: absolute;
+  top: -80px; /* Adjust the negative margin to bring the image up */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: -50px; /* Adjust the negative margin to offset the top margin of the main div */
+  z-index: 1; /* Ensure the image stays above the main div */
+}
+
+.dog-image img {
+  max-width: 100%;
+  width: 50%;
+  border: 5px solid #ff8a00;
+}
+
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+  position: relative;
+}
+.card-content::after{
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 4px;
+    background-color: #ff8a00;
+    top: 102%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0;
+
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+  flex-basis: 120px;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.value-box {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  flex-grow: 1;
+  text-align: left;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+@media (max-width: 1000px) {
+    .dog-image{
+    top: -50px;
+}
+.dog-image img{
+    width: 60%;
+}
+}
+
+@media (max-width: 747px) {
+    .card{
+        width: 70%;
+    }
+    .dog-image{
+        top: -60px;
+    }
+    .dog-image img{
+        width: 47%;
+    }
+    
+}
+@media (max-width: 650px) {
+        .dog-image{
+        top: -50px;
+    }
+    .dog-image img{
+        width: 60%;
+    }
+}
+@media (max-width: 413px) {
+    .card{
+        width: 80%;
+    }
+    .dog-image{
+        top: -40px;
+    }
+    .dog-image img{
+        width: 60%;
+    }
+    
+    
+}
