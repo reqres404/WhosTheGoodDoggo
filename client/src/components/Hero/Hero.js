@@ -21,7 +21,7 @@ const Hero = () => {
             <a href="/read-more">Read More</a>
           </div>
           <div className="carousel-image">
-            <img src={dog1} alt="Image 1" />
+            <img src={dog1} alt="dog 1" />
           </div>
         </div>
         <div className="carousel-slide">
@@ -31,7 +31,7 @@ const Hero = () => {
             <a href="/read-more">Read More</a>
           </div>
           <div className="carousel-image">
-            <img src={dog1} alt="Image 2" />
+            <img src={dog1} alt="dog 2" />
           </div>
         </div>
         <div className="carousel-slide">
@@ -41,7 +41,7 @@ const Hero = () => {
             <a href="/read-more">Read More</a>
           </div>
           <div className="carousel-image">
-            <img src={dog1} alt="Image 3" />
+            <img src={dog1} alt="dog 3" />
           </div>
         </div>
       </Carousel>
