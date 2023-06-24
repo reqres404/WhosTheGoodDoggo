@@ -26,7 +26,7 @@ const Card = () => {
   return (
     <div className="card">
       <div className="dog-image">
-        <img src={cardData.image} alt="Dog" />
+        <img className = "cardImage" src={cardData.image} alt="Dog" />
       </div>
       <div className="card-content">
         <div className="field">

@@ -1,5 +1,5 @@
 import GenerateQR from "../QRCode/GenerateQR";
-import pawBlack from "../../assets/pawBlack.svg";
+import pawWhite from "../../assets/paw.png";
 import "./Form.css";
 import { useState } from "react";
 
@@ -72,8 +72,8 @@ const Form = () => {
   return (
     <div className="add-dog">
       <div className="add-dog-header">
-        <img src={pawBlack} alt="Dog Icon" className="dog-icon" />
-        <h1>ADD A DOG</h1>
+        <img style={{color:"white"}}src={pawWhite} alt="Dog Icon" className="dog-icon" />
+        <h1 style={{color:"white"}}>ADD A DOG</h1>
       </div>
       {!submitted && (
         <form className="add-dog-form" onSubmit={handleSubmit}>

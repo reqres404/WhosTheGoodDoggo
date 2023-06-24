@@ -1,0 +1,41 @@
+.auth-div{
+    margin-top: 30px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.submitBtn{
+    margin-left: 25%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#ff8a00 ;
+    padding: 10px;
+    width: 50%;
+    border-style: none;
+    transition-duration: 0.5s;
+}
+.submitBtn:hover{
+    background-color:#0e090f ;
+    color: white;
+}
+.auth{
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+    width: 20vw;
+    background-color: #272F39;    
+}
+.username{
+    padding: 10px;
+    margin: 10px;
+}
+.password{
+    padding: 10px;
+    margin: 10px;
+}

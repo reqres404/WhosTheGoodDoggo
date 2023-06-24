@@ -4,10 +4,12 @@ const About = () => {
         <div className="aboutus">
         <h2> Who we are </h2>
         <p>
-          Faucibus vitae aliquet nec ullamcorper sit amet. Auctor eu augue ut
-          lectus arcu bibendum at varius. Ac turpis egestas sed tempus urna et
-          pharetra pharetra. Lectus magna fringilla urna porttitor rhoncus dolor
-          purus non. Lorem dolor sed viverra ipsum nunc.
+          We are a group of people who love doggo's and especially good doggos
+          and we are trying to make their lives a bit easier with your help!
+          Who's The Good Doggo is a project in progress and will be updated with 
+          new and more important features with help of your feedback.
+          Thanks for using Who's The Good Doggo.
+
         </p>
       </div>
     );

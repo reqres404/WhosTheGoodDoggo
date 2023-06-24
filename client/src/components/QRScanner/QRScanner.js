@@ -23,6 +23,7 @@ const QRScanner = () => {
 
     return (
         <div className="scannerDiv">
+            <h1>Scan the QR code</h1>
             {scanCompleted &&
             <h1>Redirecting to the card...</h1>
             }
@@ -38,10 +39,8 @@ const QRScanner = () => {
             />
             }
             
-            {/* {redirectUrl!==null &&
-                <Navigate to={redirectUrl} />
-            } */}
-            <p>Scan the QR code to redirect</p>
+
+            
         </div>
     );
 };

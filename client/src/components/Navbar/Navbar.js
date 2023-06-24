@@ -34,7 +34,7 @@ const Navbar = () => {
               <NavLink to="/scandog">Scan Dog</NavLink>
             </li>
             <li>
-              <NavLink to="/test">Test</NavLink>
+              <NavLink to="/Missing">Missing</NavLink>
             </li>
           </ul>
         </div>
