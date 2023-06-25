@@ -9,7 +9,7 @@ const Card = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("/api/dogs")
+    fetch("http://localhost:4000/api/dogs")
       .then((response) => response.json())
       .then((data) => data.find((dog) => dog._id === id))
       .then((dogData) => setCardData(dogData))

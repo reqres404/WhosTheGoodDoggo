@@ -43,7 +43,7 @@ const Form = () => {
       formData.append("address", address);
       formData.append("image", image);
 
-      fetch("api/dogs", {
+      fetch("http://localhost:4000/api/dogs", {
         method: "POST",
         body: formData,
       })

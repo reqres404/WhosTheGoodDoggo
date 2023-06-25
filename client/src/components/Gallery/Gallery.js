@@ -8,7 +8,7 @@ const Gallery = () => {
 
 
     useEffect(() => {
-      fetch("/api/dogs")
+      fetch("http://localhost:4000/api/dogs")
         .then((response) => response.json())
         .then((data) => {
           setDogs(data);
