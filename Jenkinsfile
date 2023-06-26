@@ -1,12 +1,13 @@
 pipeline {
   agent any
   environment {
-    DB_URL = 'mongodb+srv://aditya:aditya@workoutapp.aec6ean.mongodb.net/?retryWrites=true&w=majority'
-    PORT = '4000'
-    CLOUDINARY_CLOUD_NAME = 'djgdrbb3k'
-    CLOUDINARY_API_KEY = '779198893471583'
-    CLOUDINARY_SECRET_KEY = 'bZhR5XldOnNCGw2FnkHMi8Q0P5k'
-    CLOUDINARY_ENV_VAR = 'CLOUDINARY_URL=cloudinary://779198893471583:bZhR5XldOnNCGw2FnkHMi8Q0P5k@djgdrbb3k'
+    DB_URL = credentials('DB_URL')
+    PORT = credentials('PORT')
+    CLOUDINARY_CLOUD_NAME = credentials('CLOUDINARY_CLOUD_NAME')
+    CLOUDINARY_API_KEY = credentials('CLOUDINARY_API_KEY')
+    CLOUDINARY_SECRET_KEY = credentials('CLOUDINARY_SECRET_KEY')
+    CLOUDINARY_ENV_VAR = credentials('CLOUDINARY_ENV_VAR')
+    CLOUDINARY_URL = credentials('CLOUDINARY_URL')
   }
 
   stages {
