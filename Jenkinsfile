@@ -15,13 +15,6 @@ pipeline {
 				checkout scm
 			}
 		}
-    stage('Build') {
-      steps {
-        // Build your app
-        sh 'docker-compose build'
-      }
-    }
-
     stage('Deploy') {
       steps {
         // Run Docker Compose with environment variables
