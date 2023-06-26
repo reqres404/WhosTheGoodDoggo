@@ -1,12 +1,5 @@
 pipeline {
   agent any
-	stages {
-		stage('Checkout') {
-			steps {
-				checkout scm
-			}
-		}
-	}
   environment {
     DB_URL = 'mongodb+srv://aditya:aditya@workoutapp.aec6ean.mongodb.net/?retryWrites=true&w=majority'
     PORT = '4000'
@@ -17,6 +10,11 @@ pipeline {
   }
 
   stages {
+    		stage('Checkout') {
+			steps {
+				checkout scm
+			}
+		}
     stage('Build') {
       steps {
         // Build your app
