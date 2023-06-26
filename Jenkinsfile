@@ -64,5 +64,3 @@ pipeline {
 		}
 	}
 }
-sudo docker run -p 3000:3000 --network=host --name client_contain whosthegooddoggo-client
-sudo docker run -p 4000:4000 --network=test_network --name server_contain whosthegooddoggo-server
