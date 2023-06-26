@@ -59,16 +59,11 @@ pipeline {
 			}
 		}
 		
-		stage('Run Server Container') {
-			steps {
-				sh 'docker stop $(docker ps -a -q)'		
-        		sh 'docker run -d -p 4000:4000 --network=host adittyapatil1818/wgd_jenkins:server'
-			}
-		}
-    
-    	stage('Run Client Container') {
+		stage('Run Containers') {
 			steps {		
-      			sh 'docker run -p 3000:3000 --network=host adittyapatil1818/wgd_jenkins:client'
+      			sh 'docker stop $(docker ps -a -q)'		
+        		sh 'docker run -d -p 4000:4000 --network=host adittyapatil1818/wgd_jenkins:server'
+        		sh 'docker run -d -p 3000:3000 --network=host adittyapatil1818/wgd_jenkins:client'
      	 	}
 		}
 	}
