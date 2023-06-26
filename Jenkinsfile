@@ -51,18 +51,15 @@ pipeline {
 				}
 			}
 		}
-
 		stage('Freeing Ports') {
 			steps {
 				sh 'docker stop $(docker ps -a -q)'		
 			}
 		}
-		
 		stage('Run Containers') {
-			steps {		
-      			sh 'docker stop $(docker ps -a -q)'		
-        		sh 'docker run -d -p 4000:4000 --network=host adittyapatil1818/wgd_jenkins:server'
-        		sh 'docker run -d -p 3000:3000 --network=host adittyapatil1818/wgd_jenkins:client'
+			steps {			
+        		sh 'docker run -d -p 4000:4000 adittyapatil1818/wgd_jenkins:server'
+        		sh 'docker run -d -p 3000:3000 adittyapatil1818/wgd_jenkins:client'
      	 	}
 		}
 	}
