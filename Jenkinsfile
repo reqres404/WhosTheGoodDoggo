@@ -2,7 +2,6 @@ pipeline {
 	agent any
   environment {
     DB_URL = credentials('DB_URL')
-    PORT = credentials('PORT')
     CLOUDINARY_CLOUD_NAME = credentials('CLOUDINARY_CLOUD_NAME')
     CLOUDINARY_API_KEY = credentials('CLOUDINARY_API_KEY')
     CLOUDINARY_SECRET_KEY = credentials('CLOUDINARY_SECRET_KEY')
