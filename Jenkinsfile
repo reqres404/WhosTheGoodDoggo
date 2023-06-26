@@ -55,7 +55,6 @@ pipeline {
 		}
 				stage('Run Containers') {
 			steps {
-				sh 'docker stop $(docker ps -a -q)'
 				sh 'docker-compose up'
 				// sh 'docker run -d -p 4000:4000 adittyapatil1818/wgd_jenkins:server'
 			}
