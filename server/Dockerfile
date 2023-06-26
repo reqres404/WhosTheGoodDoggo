@@ -11,7 +11,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 4000
+EXPOSE 5000
 
 # Use script specified in package,json
 CMD ["npm", "run", "dev"]
