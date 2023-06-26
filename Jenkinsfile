@@ -55,10 +55,14 @@ pipeline {
 		}
 				stage('Run Containers') {
 			steps {
-				sh 'docker-compose up'
-				// sh 'docker run -d -p 4000:4000 adittyapatil1818/wgd_jenkins:server'
+				sh 'docker stop $(docker ps -a -q)'
+
+				sh 'docker run -p 3000:3000 --network=host adittyapatil1818/wgd_jenkins:client'
+				sh 'docker run -d -p 4000:4000 --network=host adittyapatil1818/wgd_jenkins:server'
 			}
 		
 		}
 	}
 }
+sudo docker run -p 3000:3000 --network=host --name client_contain whosthegooddoggo-client
+sudo docker run -p 4000:4000 --network=test_network --name server_contain whosthegooddoggo-server
