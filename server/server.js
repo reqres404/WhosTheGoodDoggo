@@ -19,7 +19,7 @@ app.use("/api/dogs",dogRoute)
 mongoose.set('strictQuery',true)
 mongoose.connect(process.env.DB_URL)
 .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(4000, () => {
       console.log(`Connected to DB and Listening to ${process.env.PORT}!`);
     });
   })

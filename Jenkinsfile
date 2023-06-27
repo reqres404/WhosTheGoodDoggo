@@ -8,6 +8,7 @@ pipeline {
         CLOUDINARY_SECRET_KEY = credentials('CLOUDINARY_SECRET_KEY')
         CLOUDINARY_ENV_VAR = credentials('CLOUDINARY_ENV_VAR')
         CLOUDINARY_URL = credentials('CLOUDINARY_URL')
+        
     }
 
     stages {
