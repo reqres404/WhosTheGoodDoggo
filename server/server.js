@@ -20,7 +20,7 @@ mongoose.set('strictQuery',true)
 mongoose.connect(process.env.DB_URL)
 .then(() => {
     app.listen(4000, () => {
-      console.log(`Connected to DB and Listening to ${process.env.PORT}!`);
+      console.log(`Connected to DB and Listening to 4000!`);
     });
   })
   .catch((error) => {
