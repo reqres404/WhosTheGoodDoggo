@@ -21,10 +21,10 @@ pipeline {
         stage('Build Images') {
             steps {
                 dir('client') {
-                    sh 'docker build -t adittyapatil1818/wgd_jenkins:client .'
+                    sh 'sudo docker build -t adittyapatil1818/wgd_jenkins:client .'
                 }
                 dir('server') {
-                    sh 'docker build -t adittyapatil1818/wgd_jenkins:server .'
+                    sh 'sudo docker build -t adittyapatil1818/wgd_jenkins:server .'
                 }
             }
         }
