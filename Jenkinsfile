@@ -18,22 +18,6 @@ pipeline {
             }
         }
 
-        stage('Client Tests') {
-            steps {
-                dir('client') {
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('Server Tests') {
-            steps {
-                dir('server') {
-                    sh 'npm install'
-                }
-            }
-        }
-
         stage('Build Images') {
             steps {
                 dir('client') {
