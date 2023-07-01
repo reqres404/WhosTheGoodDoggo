@@ -1,49 +1,38 @@
 pipeline {
     agent any
 
-    environment {
-        DB_URL = credentials('DB_URL')
-        CLOUDINARY_CLOUD_NAME = credentials('CLOUDINARY_CLOUD_NAME')
-        CLOUDINARY_API_KEY = credentials('CLOUDINARY_API_KEY')
-        CLOUDINARY_SECRET_KEY = credentials('CLOUDINARY_SECRET_KEY')
-        CLOUDINARY_ENV_VAR = credentials('CLOUDINARY_ENV_VAR')
-        CLOUDINARY_URL = credentials('CLOUDINARY_URL')
-        
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
-        stage('Build Images') {
+        stage('Build and Package') {
             steps {
                 dir('client') {
-                    sh 'docker build -t adittyapatil1818/wgd_jenkins:client .'
+                    sh 'npm run build' // Build the client application
                 }
                 dir('server') {
-                    sh 'docker build -t adittyapatil1818/wgd_jenkins:server .'
+                    sh 'npm run build' // Build the server application
                 }
             }
         }
 
-        stage('Push Images to DockerHub') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push adittyapatil1818/wgd_jenkins:client'
-                    sh 'docker push adittyapatil1818/wgd_jenkins:server'
-                }
+        stage('Deploy') {
+            environment {
+                    DB_URL = credentials('DB_URL')
+                    CLOUDINARY_CLOUD_NAME = credentials('CLOUDINARY_CLOUD_NAME')
+                    CLOUDINARY_API_KEY = credentials('CLOUDINARY_API_KEY')
+                    CLOUDINARY_SECRET_KEY = credentials('CLOUDINARY_SECRET_KEY')
+                    CLOUDINARY_ENV_VAR = credentials('CLOUDINARY_ENV_VAR')
+                    CLOUDINARY_URL = credentials('CLOUDINARY_URL')
             }
-        }
-
-        stage('Run Containers') {
             steps {
-                sh 'docker rm -f $(docker ps -aq)'
-                sh 'docker run -d -p 4000:4000 -e DB_URL=$DB_URL -e CLOUDINARY_CLOUD_NAME=$CLOUDINARY_CLOUD_NAME -e CLOUDINARY_API_KEY=$CLOUDINARY_API_KEY -e CLOUDINARY_SECRET_KEY=$CLOUDINARY_SECRET_KEY -e CLOUDINARY_ENV_VAR=$CLOUDINARY_ENV_VAR -e CLOUDINARY_URL=$CLOUDINARY_URL adittyapatil1818/wgd_jenkins:server'
-                sh 'docker run -d -p 3000:3000 adittyapatil1818/wgd_jenkins:client'
+                dir('server') {
+                    sh 'npm install -g pm2' // Install PM2 globally
+                    sh 'pm2 delete my-app || :' // Stop and delete any running instances
+                    sh 'pm2 start build/server.js --name my-app --env production' // Start the server with PM2
+                }
             }
         }
     }
