@@ -10,9 +10,12 @@ pipeline {
         stage('Build and Package') {
             steps {
                 dir('client') {
+                    sh 'npm install --legacy-peer-deps'
                     sh 'npm run build' // Build the client application
                 }
                 dir('server') {
+                    sh 'npm install -g nodemon'
+                    sh 'npm install'
                     sh 'npm run build' // Build the server application
                 }
             }
