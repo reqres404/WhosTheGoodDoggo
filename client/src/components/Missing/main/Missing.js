@@ -17,7 +17,7 @@ const Missing = () => {
     }, []);
     return (
         <div>
-            <h1>Missing Dogs</h1>
+            <h1>Missing Posts</h1>
             {dogs.map((dog) => (
                 <div key={dog._id}>
                     <h3>{dog.name}</h3>
