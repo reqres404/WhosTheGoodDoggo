@@ -16,7 +16,7 @@ const TestPage = () => {
     }
     const handleDelete = (id) => {
         console.log(id);
-        fetch(`http://localhost:4000/api/dogs/${id}`, {
+        fetch(`http://43.204.233.117:4000/api/dogs/${id}`, {
           method: "DELETE",
         })
           .then(() => {
@@ -28,7 +28,7 @@ const TestPage = () => {
           });
       };
     useEffect(() => {
-        fetch('http://localhost:4000/api/dogs')
+        fetch('http://43.204.233.117:4000/api/dogs')
           .then(response => response.json())
           .then(data => setDogs(data));
       }, []);
