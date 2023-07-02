@@ -21,7 +21,7 @@ pipeline {
         stage('Client Tests') {
             steps {
                 dir('client') {
-                    sh 'npm install'
+                    sh 'npm install --legacy-peer-deps'
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Server Tests') {
             steps {
                 dir('server') {
-                    sh 'npm install'
+                    sh 'npm install --legacy-peer-deps'
                 }
             }
         }
