@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 const Missing = () => {
     const [dogs, setDogs] = useState([]);
-    
-
     const imageStyle = {
         width:'30vw',
         height: '40vh',
