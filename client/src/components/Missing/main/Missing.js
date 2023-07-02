@@ -9,7 +9,7 @@ const Missing = () => {
         boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
     }
     useEffect(() => {
-        fetch("http://localhost:4000/api/dogs")
+        fetch("http://43.204.233.117:4000/api/dogs")
             .then((response) => response.json())
             .then((data) => setDogs(data))
             .then(console.log(dogs))
