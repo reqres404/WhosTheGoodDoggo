@@ -43,14 +43,14 @@ const Form = () => {
       formData.append("address", address);
       formData.append("image", image);
 
-      fetch("http://localhost:4000/api/dogs", {
+      fetch("http://43.204.233.117:4000/api/dogs", {
         method: "POST",
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          setValue(`http://localhost:3000/card/${data._id}`);
+          setValue(`http://43.204.233.117:3000/card/${data._id}`);
           setName("");
           setAge("");
           setWeight("");

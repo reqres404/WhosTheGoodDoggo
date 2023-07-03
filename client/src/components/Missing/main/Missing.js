@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 const Missing = () => {
     const [dogs, setDogs] = useState([]);
-    
-
     const imageStyle = {
         width:'30vw',
         height: '40vh',
@@ -11,7 +9,7 @@ const Missing = () => {
         boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)'
     }
     useEffect(() => {
-        fetch("http://localhost:4000/api/dogs")
+        fetch("http://43.204.233.117:4000/api/dogs")
             .then((response) => response.json())
             .then((data) => setDogs(data))
             .then(console.log(dogs))
@@ -19,7 +17,7 @@ const Missing = () => {
     }, []);
     return (
         <div>
-            <h1>Missing Dogs</h1>
+            <h1>Missing Posts</h1>
             {dogs.map((dog) => (
                 <div key={dog._id}>
                     <h3>{dog.name}</h3>
