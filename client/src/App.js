@@ -7,6 +7,7 @@ import ScanDog from "./Pages/ScanDog/ScanDog";
 import Navbar from "./components/Navbar/Navbar";
 import Card from "./components/Card/Card";
 import Missing from "./components/Missing/main/Missing";
+import Auth from "./Pages/AuthTest/Auth";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/test" element={<TestPage />} />
                 <Route path="/card/:id" element={<Card/>} />
                 <Route path="/missing" element={<Missing/>} />
+                <Route path="/auth" element={<Auth/>} />
 
             </Routes>
         </div>
